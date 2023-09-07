@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create new entry
+{% endblock %}
+{%block randomPage %}
+<div>
+    <a href="{% url 'entry' pagename=randomPage %}">Random page</a>
+</div>
+{%endblock%}
+{% block body %}
+{% if  isDupe %}
+<h1 class="warning-text">This page already exists</h1>
+{% endif %}
+    <form action="{% url 'create' %}" method="POST" class="create-entry-form"> 
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit entry" class="submit-btn">
+    </form>
+{% endblock %}

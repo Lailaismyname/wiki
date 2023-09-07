@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search results
+{% endblock %}
+{%block randomPage %}
+<div>
+    <a href="{% url 'entry' pagename=randomPage %}">Random page</a>
+</div>
+{%endblock%}
+{% block body %}
+    <h1>Results for '{{ search_term  }}'</h1>
+    {% if hasResults %}
+    <ul class="search-results">
+    {% for result in search_results %}
+    <li><a href="{% url 'entry' pagename=result %}">{{ result }}</a></li>
+    {% endfor %}
+    </ul>
+    {%else%}
+    <p>No results found</p>
+    {%endif%}
+{% endblock %}

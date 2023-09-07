@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Entry page
+{% endblock %}
+
+{%block randomPage %}
+<div>
+    <a href="{% url 'entry' pagename=randomPage %}">Random page</a>
+</div>
+{%endblock%}
+{% block body %}
+    {% if doesPageExist %}
+    <a href="{% url 'edit' page=pagename %}"><button class="edit-btn">Edit page</button></a>
+        {% autoescape off %}  {{entry}}  {% endautoescape %}    
+    {% else %}
+    <h1>Error 404</h1>
+    <span>The page you have requested does not exist</span>
+    <p>{{entry}}</p>
+    {% endif %}
+{% endblock %}
